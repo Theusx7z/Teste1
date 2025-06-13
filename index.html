@@ -4,51 +4,51 @@
   <meta charset="UTF-8" />
   <title>Feliz Dia dos Namorados ❤️</title>
   <style>
-    body {{
+    body {
       margin: 0;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #ffe0e9, #ffe6f0);
       color: #333;
       text-align: center;
-    }}
-    .card {{
+    }
+    .card {
       position: relative;
       z-index: 2;
       padding: 50px 20px;
-    }}
-    img {{
+    }
+    img {
       max-width: 300px;
       border-radius: 20px;
       box-shadow: 0 0 15px #c9184a;
       margin-top: 20px;
       animation: float 4s ease-in-out infinite;
-    }}
-    @keyframes float {{
-      0%, 100% {{ transform: translateY(0); }}
-      50% {{ transform: translateY(-10px); }}
-    }}
-    h1 {{
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    h1 {
       color: #c9184a;
       font-size: 2.2em;
       animation: pulse 2s infinite;
-    }}
-    @keyframes pulse {{
-      0%, 100% {{ transform: scale(1); }}
-      50% {{ transform: scale(1.05); }}
-    }}
-    p {{
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    p {
       font-size: 1.2em;
       max-width: 600px;
       margin: 30px auto;
       line-height: 1.6;
       animation: fadeInText 3s ease-in-out;
-    }}
-    @keyframes fadeInText {{
-      from {{ opacity: 0; transform: translateY(20px); }}
-      to {{ opacity: 1; transform: translateY(0); }}
-    }}
-    .hearts {{
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hearts {
       position: fixed;
       top: 0;
       left: 0;
@@ -57,43 +57,43 @@
       z-index: 1;
       overflow: hidden;
       pointer-events: none;
-    }}
-    .heart {{
+    }
+    .heart {
       position: absolute;
       width: 20px;
       height: 20px;
       background: red;
       transform: rotate(45deg);
       animation: floatUp 10s linear infinite;
-    }}
+    }
     .heart::before,
-    .heart::after {{
+    .heart::after {
       content: "";
       position: absolute;
       width: 20px;
       height: 20px;
       background: red;
       border-radius: 50%;
-    }}
-    .heart::before {{
+    }
+    .heart::before {
       top: -10px;
       left: 0;
-    }}
-    .heart::after {{
+    }
+    .heart::after {
       top: 0;
       left: -10px;
-    }}
-    @keyframes floatUp {{
-      0% {{
+    }
+    @keyframes floatUp {
+      0% {
         transform: translateY(100vh) rotate(45deg);
         opacity: 1;
-      }}
-      100% {{
+      }
+      100% {
         transform: translateY(-10vh) rotate(45deg);
         opacity: 0;
-      }}
-    }}
-    #playBtn {{
+      }
+    }
+    #playBtn {
       font-size: 16px;
       padding: 10px 20px;
       margin: 20px auto 0;
@@ -104,16 +104,27 @@
       border-radius: 8px;
       transition: background-color 0.3s ease;
       display: block;
-    }}
-    #playBtn:hover {{
+    }
+    #playBtn:hover {
       background-color: #a0133a;
-    }}
+    }
   </style>
 </head>
 <body>
   <div class="hearts">
-    {''.join(f'<div class="heart" style="left: {i*10}%; animation-delay: {i}s;"></div>' for i in range(10))}
+    <!-- Corações animados manualmente adicionados -->
+    <div class="heart" style="left: 0%; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="heart" style="left: 40%; animation-delay: 4s;"></div>
+    <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
+    <div class="heart" style="left: 60%; animation-delay: 6s;"></div>
+    <div class="heart" style="left: 70%; animation-delay: 7s;"></div>
+    <div class="heart" style="left: 80%; animation-delay: 8s;"></div>
+    <div class="heart" style="left: 90%; animation-delay: 9s;"></div>
   </div>
+
   <div class="card">
     <h1>Feliz Dia dos Namorados, meu amor! 💖</h1>
     <p>
@@ -123,20 +134,21 @@
       Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.<br /><br />
       Te amo com todo o meu coração. ❤️
     </p>
-    <img src="{example_base64_img}" alt="Nós dois" />
+    <img src="sua-imagem.jpg" alt="Nós dois" />
     <audio id="musica" loop>
       <source src="musica.mp3" type="audio/mp3" />
       Seu navegador não suporta áudio :(
     </audio>
     <button id="playBtn">🎵 Tocar música</button>
   </div>
+
   <script>
     const playBtn = document.getElementById('playBtn');
     const musica = document.getElementById('musica');
-    playBtn.addEventListener('click', () => {{
+    playBtn.addEventListener('click', () => {
       musica.play();
       playBtn.style.display = 'none';
-    }});
+    });
   </script>
 </body>
 </html>
