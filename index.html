@@ -31,17 +31,16 @@
       margin: 20px auto;
     }
 
-    <img src="https://photos.app.goo.gl/xJj6C9qT4fqXcmhSA"
-
-      max-width: 380px;
+    img {
+      max-width: 380px; /* Aumentei o tamanho da imagem */
       border-radius: 20px;
       box-shadow: 0 0 20px #c9184a;
       animation: float 4s ease-in-out infinite;
       z-index: 2;
       position: relative;
-    
     }
 
+    /* Efeito de brilho ao redor da foto */
     .sparkle {
       position: absolute;
       top: -20px;
@@ -74,7 +73,7 @@
 
     h1 {
       color: #c9184a;
-      font-size: 4em;
+      font-size: 4em; /* Aumentei ainda mais o tamanho do título */
       animation: pulse 2s infinite, titleEnter 2s ease-out;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       margin-bottom: 30px;
@@ -91,8 +90,8 @@
     }
 
     p {
-      font-size: 2.2em;
-      max-width: 900px;
+      font-size: 2.2em; /* Aumentei ainda mais o tamanho do texto */
+      max-width: 900px; /* Aumentei a largura máxima para acomodar o texto maior */
       margin: 30px auto;
       line-height: 1.8;
       animation: fadeInText 3s ease-in-out;
@@ -105,12 +104,13 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    .hearts, .foreground-hearts {
+    .hearts {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: 1;
       overflow: hidden;
       pointer-events: none;
     }
@@ -122,30 +122,74 @@
       animation: floatUp 15s linear infinite;
     }
 
-    .heart::before, .heart::after {
+    .heart::before,
+    .heart::after {
       content: "";
       position: absolute;
       background: red;
       border-radius: 50%;
     }
 
-    .heart::before { top: -50%; left: 0; width: 100%; height: 100%; }
-    .heart::after { top: 0; left: -50%; width: 100%; height: 100%; }
+    .heart::before {
+      top: -50%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-    .heart-small { width: 15px; height: 15px; }
-    .heart-medium { width: 25px; height: 25px; }
-    .heart-large { width: 35px; height: 35px; }
+    .heart::after {
+      top: 0;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+    }
 
+    /* Corações de tamanhos diferentes */
+    .heart-small {
+      width: 15px;
+      height: 15px;
+    }
+
+    .heart-medium {
+      width: 25px;
+      height: 25px;
+    }
+
+    .heart-large {
+      width: 35px;
+      height: 35px;
+    }
+
+    /* Cores diferentes para os corações */
     .heart-red { background: #ff0000; }
     .heart-red::before, .heart-red::after { background: #ff0000; }
+    
     .heart-pink { background: #ff69b4; }
     .heart-pink::before, .heart-pink::after { background: #ff69b4; }
+    
     .heart-purple { background: #da70d6; }
     .heart-purple::before, .heart-purple::after { background: #da70d6; }
 
     @keyframes floatUp {
-      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Corações em primeiro plano que flutuam na tela */
+    .foreground-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
     }
 
     .foreground-heart {
@@ -159,7 +203,10 @@
         transform: translate(-100px, 100vh) rotate(45deg) scale(0.5);
         opacity: 0;
       }
-      10%, 90% {
+      10% {
+        opacity: 0.7;
+      }
+      90% {
         opacity: 0.7;
       }
       100% {
@@ -168,6 +215,7 @@
       }
     }
 
+    /* Efeito de pulsação para o texto "Te amo" */
     .highlight {
       color: #c9184a;
       display: inline-block;
@@ -176,19 +224,45 @@
 
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
-      10%, 30% { transform: scale(1.1); }
-      20%, 40% { transform: scale(1); }
+      10% { transform: scale(1.1); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      40% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
   <div class="hearts">
-    <!-- 20 corações flutuantes -->
-    <!-- (os mesmos do seu código original) -->
+    <!-- 20 corações flutuantes em diferentes tamanhos, cores e velocidades -->
+    <div class="heart heart-small heart-red" style="left: 5%; animation-delay: 0s; animation-duration: 12s;"></div>
+    <div class="heart heart-medium heart-pink" style="left: 10%; animation-delay: 1s; animation-duration: 15s;"></div>
+    <div class="heart heart-large heart-purple" style="left: 15%; animation-delay: 2s; animation-duration: 18s;"></div>
+    <div class="heart heart-small heart-pink" style="left: 20%; animation-delay: 3s; animation-duration: 10s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 25%; animation-delay: 4s; animation-duration: 14s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 30%; animation-delay: 5s; animation-duration: 16s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 35%; animation-delay: 6s; animation-duration: 13s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 40%; animation-delay: 7s; animation-duration: 17s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 45%; animation-delay: 8s; animation-duration: 11s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 50%; animation-delay: 9s; animation-duration: 19s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 55%; animation-delay: 10s; animation-duration: 12s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 60%; animation-delay: 11s; animation-duration: 15s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 65%; animation-delay: 12s; animation-duration: 18s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 70%; animation-delay: 13s; animation-duration: 10s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 75%; animation-delay: 14s; animation-duration: 14s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 80%; animation-delay: 15s; animation-duration: 16s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 85%; animation-delay: 16s; animation-duration: 13s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 90%; animation-delay: 17s; animation-duration: 17s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 95%; animation-delay: 18s; animation-duration: 11s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 97%; animation-delay: 19s; animation-duration: 19s;"></div>
   </div>
 
+  <!-- Corações em primeiro plano -->
   <div class="foreground-hearts">
-    <!-- Corações em primeiro plano -->
+    <div class="heart heart-medium heart-red foreground-heart" style="top: 20%; animation-delay: 2s;"></div>
+    <div class="heart heart-large heart-pink foreground-heart" style="top: 40%; animation-delay: 5s;"></div>
+    <div class="heart heart-small heart-purple foreground-heart" style="top: 60%; animation-delay: 8s;"></div>
+    <div class="heart heart-medium heart-red foreground-heart" style="top: 80%; animation-delay: 11s;"></div>
+    <div class="heart heart-large heart-pink foreground-heart" style="top: 30%; animation-delay: 14s;"></div>
   </div>
 
   <div class="card">
@@ -200,25 +274,37 @@
       Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.<br /><br />
       <span class="highlight">Te amo com todo o meu coração. ❤️</span>
     </p>
-
+      
+    <!-- Imagem principal com efeito de brilho -->
     <div class="photo-container">
       <div class="sparkle"></div>
-      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHB... (continua)" alt="Nós dois" />
+      <img src="ca356286-9ba3-45c0-b386-3c82946a5054.jpeg" alt="Nós dois" />
     </div>
   </div>
-
+  
+  <!-- Áudio em segundo plano usando HTML5 Audio -->
   <audio id="backgroundMusic" autoplay loop style="display:none">
     <source src="musica.mp3" type="audio/mp3">
     Seu navegador não suporta áudio HTML5.
   </audio>
-
+  
   <script>
+    // Tenta iniciar o áudio quando a página carrega
     window.addEventListener('load', function() {
       const audio = document.getElementById('backgroundMusic');
+      
+      // Tenta iniciar o áudio
       const playPromise = audio.play();
+      
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          document.addEventListener('click', () => audio.play(), {once: true});
+        playPromise.catch(error => {
+          // Autoplay foi impedido
+          console.log("Autoplay foi bloqueado pelo navegador");
+          
+          // Adiciona um evento de clique para iniciar o áudio após interação do usuário
+          document.addEventListener('click', function() {
+            audio.play();
+          }, {once: true});
         });
       }
     });
