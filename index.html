@@ -1,77 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz Dia dos Namorados</title>
+  <meta charset="UTF-8" />
+  <title>Feliz Dia dos Namorados ❤️</title>
   <style>
     body {
-      background: linear-gradient(to bottom right, #ffe6f0, #ffd6e8);
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      color: #d6006e;
-      font-size: 32px;
-    }
-
-    p {
-      font-size: 22px;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffe0e9, #ffe6f0);
       color: #333;
-      margin: 10px 0;
+      text-align: center;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      padding: 50px 20px;
     }
 
     img {
-      max-width: 90%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-musica {
-      background-color: #d6006e;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      font-size: 18px;
-      border-radius: 8px;
-      cursor: pointer;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #c9184a;
       margin-top: 20px;
+      animation: float 4s ease-in-out infinite;
     }
 
-    .btn-musica:hover {
-      background-color: #b0005b;
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      color: #c9184a;
+      font-size: 2.5em;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    p {
+      font-size: 1.5em;
+      max-width: 700px;
+      margin: 30px auto;
+      line-height: 1.8;
+      animation: fadeInText 3s ease-in-out;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 10s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    #playBtn {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 20px auto 0;
+      cursor: pointer;
+      background-color: #c9184a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      display: block;
+    }
+
+    #playBtn:hover {
+      background-color: #a0133a;
     }
   </style>
 </head>
 <body>
+  <div class="hearts">
+    <!-- 10 corações flutuantes -->
+    <div class="heart" style="left: 0%; animation-delay: 0s;"></div>
+    <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
+    <div class="heart" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="heart" style="left: 40%; animation-delay: 4s;"></div>
+    <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
+    <div class="heart" style="left: 60%; animation-delay: 6s;"></div>
+    <div class="heart" style="left: 70%; animation-delay: 7s;"></div>
+    <div class="heart" style="left: 80%; animation-delay: 8s;"></div>
+    <div class="heart" style="left: 90%; animation-delay: 9s;"></div>
+  </div>
 
-  <!-- Imagem -->
-  <img src="img/IMG_5010.png" alt="Imagem especial do Dia dos Namorados">
-
-  <!-- Texto romântico -->
-  <h1>Feliz Dia dos Namorados, meu amor! 💖</h1>
-
-  <p>Desde que você entrou na minha vida, tudo ficou mais bonito.</p>
-  <p>Seu sorriso ilumina meus dias, seu abraço me acalma, e seu amor me completa.</p>
-  <p>A cada momento ao seu lado, eu descubro mais motivos para te amar.</p>
-  <p>Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.</p>
-  <p>Te amo com todo o meu coração. ❤️</p>
-
-  <!-- Botão de tocar música -->
-  <button class="btn-musica" onclick="tocarMusica()">🎵 Tocar música</button>
-
-  <audio id="musica" src="musica.mp3"></audio>
+  <div class="card">
+    <h1>Feliz Dia dos Namorados, meu amor! 💖</h1>
+    <p>
+      Desde que você entrou na minha vida, tudo ficou mais bonito.<br />
+      Seu sorriso ilumina meus dias, seu abraço me acalma, e seu amor me completa.<br />
+      A cada momento ao seu lado, eu descubro mais motivos para te amar.<br />
+      Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.<br /><br />
+      Te amo com todo o meu coração. ❤️
+    </p>
+    <img src="foto.jpg" alt="Nós dois" />
+    <audio id="musica" loop>
+      <source src="musica.mp3" type="audio/mp3" />
+      Seu navegador não suporta áudio :(
+    </audio>
+    <button id="playBtn">🎵 Tocar música</button>
+  </div>
 
   <script>
-    function tocarMusica() {
-      const musica = document.getElementById('musica');
+    const playBtn = document.getElementById('playBtn');
+    const musica = document.getElementById('musica');
+    playBtn.addEventListener('click', () => {
       musica.play();
-    }
+      playBtn.style.display = 'none';
+    });
   </script>
-
 </body>
 </html>
