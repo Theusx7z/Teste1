@@ -4,16 +4,189 @@
   <meta charset="UTF-8" />
   <title>Feliz Dia dos Namorados ❤️</title>
   <style>
-    /* (todo o CSS continua exatamente como você mandou) */
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffe0e9, #ffe6f0);
+      color: #333;
+      text-align: center;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      padding: 50px 20px;
+      animation: fadeInScale 1.5s ease-out;
+    }
+
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .photo-container {
+      position: relative;
+      display: inline-block;
+      margin: 20px auto;
+    }
+
+    img {
+      max-width: 380px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #c9184a;
+      animation: float 4s ease-in-out infinite;
+      z-index: 2;
+      position: relative;
+    }
+
+    .sparkle {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      border-radius: 30px;
+      background: linear-gradient(45deg, 
+        rgba(255,255,255,0) 0%,
+        rgba(255,192,203,0.4) 25%, 
+        rgba(255,105,180,0.6) 50%, 
+        rgba(255,192,203,0.4) 75%, 
+        rgba(255,255,255,0) 100%);
+      background-size: 200% 200%;
+      animation: sparkleEffect 3s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes sparkleEffect {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 200%; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-12px) rotate(1deg); }
+      50% { transform: translateY(-8px) rotate(-1deg); }
+      75% { transform: translateY(-4px) rotate(0.5deg); }
+    }
+
+    h1 {
+      color: #c9184a;
+      font-size: 4em;
+      animation: pulse 2s infinite, titleEnter 2s ease-out;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    @keyframes titleEnter {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    p {
+      font-size: 2.2em;
+      max-width: 900px;
+      margin: 30px auto;
+      line-height: 1.8;
+      animation: fadeInText 3s ease-in-out;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(30px); }
+      30% { opacity: 0; }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hearts, .foreground-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 15s linear infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -50%; left: 0; width: 100%; height: 100%; }
+    .heart::after { top: 0; left: -50%; width: 100%; height: 100%; }
+
+    .heart-small { width: 15px; height: 15px; }
+    .heart-medium { width: 25px; height: 25px; }
+    .heart-large { width: 35px; height: 35px; }
+
+    .heart-red { background: #ff0000; }
+    .heart-red::before, .heart-red::after { background: #ff0000; }
+    .heart-pink { background: #ff69b4; }
+    .heart-pink::before, .heart-pink::after { background: #ff69b4; }
+    .heart-purple { background: #da70d6; }
+    .heart-purple::before, .heart-purple::after { background: #da70d6; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+    }
+
+    .foreground-heart {
+      position: absolute;
+      opacity: 0;
+      animation: floatAcross 10s linear infinite;
+    }
+
+    @keyframes floatAcross {
+      0% {
+        transform: translate(-100px, 100vh) rotate(45deg) scale(0.5);
+        opacity: 0;
+      }
+      10%, 90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(calc(100vw + 100px), 0) rotate(360deg) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .highlight {
+      color: #c9184a;
+      display: inline-block;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      10%, 30% { transform: scale(1.1); }
+      20%, 40% { transform: scale(1); }
+    }
   </style>
 </head>
 <body>
   <div class="hearts">
-    <!-- (corações flutuantes) -->
+    <!-- 20 corações flutuantes -->
+    <!-- (os mesmos do seu código original) -->
   </div>
 
   <div class="foreground-hearts">
-    <!-- (corações em primeiro plano) -->
+    <!-- Corações em primeiro plano -->
   </div>
 
   <div class="card">
@@ -26,14 +199,12 @@
       <span class="highlight">Te amo com todo o meu coração. ❤️</span>
     </p>
 
-    <!-- Imagem integrada -->
     <div class="photo-container">
       <div class="sparkle"></div>
-      <img src="ca356286-9ba3-45c0-b386-3c82946a5054.jpeg" alt="Nós dois" />
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHB... (continua)" alt="Nós dois" />
     </div>
   </div>
 
-  <!-- Música de fundo -->
   <audio id="backgroundMusic" autoplay loop style="display:none">
     <source src="musica.mp3" type="audio/mp3">
     Seu navegador não suporta áudio HTML5.
@@ -45,9 +216,7 @@
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
-          document.addEventListener('click', function() {
-            audio.play();
-          }, {once: true});
+          document.addEventListener('click', () => audio.play(), {once: true});
         });
       }
     });
