@@ -12,11 +12,13 @@
       color: #333;
       text-align: center;
     }
+
     .card {
       position: relative;
       z-index: 2;
       padding: 50px 20px;
     }
+
     img {
       max-width: 300px;
       border-radius: 20px;
@@ -24,30 +26,36 @@
       margin-top: 20px;
       animation: float 4s ease-in-out infinite;
     }
+
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
+
     h1 {
       color: #c9184a;
-      font-size: 2.2em;
+      font-size: 2.5em;
       animation: pulse 2s infinite;
     }
+
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
+
     p {
-      font-size: 1.2em;
-      max-width: 600px;
+      font-size: 1.5em;
+      max-width: 700px;
       margin: 30px auto;
-      line-height: 1.6;
+      line-height: 1.8;
       animation: fadeInText 3s ease-in-out;
     }
+
     @keyframes fadeInText {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     .hearts {
       position: fixed;
       top: 0;
@@ -58,6 +66,7 @@
       overflow: hidden;
       pointer-events: none;
     }
+
     .heart {
       position: absolute;
       width: 20px;
@@ -66,6 +75,7 @@
       transform: rotate(45deg);
       animation: floatUp 10s linear infinite;
     }
+
     .heart::before,
     .heart::after {
       content: "";
@@ -75,14 +85,17 @@
       background: red;
       border-radius: 50%;
     }
+
     .heart::before {
       top: -10px;
       left: 0;
     }
+
     .heart::after {
       top: 0;
       left: -10px;
     }
+
     @keyframes floatUp {
       0% {
         transform: translateY(100vh) rotate(45deg);
@@ -93,6 +106,7 @@
         opacity: 0;
       }
     }
+
     #playBtn {
       font-size: 16px;
       padding: 10px 20px;
@@ -105,6 +119,7 @@
       transition: background-color 0.3s ease;
       display: block;
     }
+
     #playBtn:hover {
       background-color: #a0133a;
     }
@@ -112,7 +127,7 @@
 </head>
 <body>
   <div class="hearts">
-    <!-- Corações animados manualmente adicionados -->
+    <!-- 10 corações flutuantes -->
     <div class="heart" style="left: 0%; animation-delay: 0s;"></div>
     <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
     <div class="heart" style="left: 20%; animation-delay: 2s;"></div>
@@ -134,7 +149,7 @@
       Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.<br /><br />
       Te amo com todo o meu coração. ❤️
     </p>
-    <img src="sua-imagem.jpg" alt="Nós dois" />
+    <img src="foto.jpg" alt="Nós dois" />
     <audio id="musica" loop>
       <source src="musica.mp3" type="audio/mp3" />
       Seu navegador não suporta áudio :(
