@@ -20,7 +20,7 @@
     }
 
     img {
-      max-width: 300px;
+      max-width: 350px; /* Aumentei um pouco o tamanho da imagem */
       border-radius: 20px;
       box-shadow: 0 0 15px #c9184a;
       margin-top: 20px;
@@ -34,8 +34,9 @@
 
     h1 {
       color: #c9184a;
-      font-size: 2.5em;
+      font-size: 3.2em; /* Aumentei o tamanho da fonte do título */
       animation: pulse 2s infinite;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     }
 
     @keyframes pulse {
@@ -44,8 +45,8 @@
     }
 
     p {
-      font-size: 1.5em;
-      max-width: 700px;
+      font-size: 1.8em; /* Aumentei o tamanho da fonte do texto */
+      max-width: 800px; /* Aumentei a largura máxima para acomodar o texto maior */
       margin: 30px auto;
       line-height: 1.8;
       animation: fadeInText 3s ease-in-out;
@@ -108,8 +109,8 @@
     }
 
     #playBtn {
-      font-size: 16px;
-      padding: 10px 20px;
+      font-size: 18px; /* Aumentei o tamanho da fonte do botão */
+      padding: 12px 24px; /* Aumentei o padding do botão */
       margin: 20px auto 0;
       cursor: pointer;
       background-color: #c9184a;
@@ -122,6 +123,28 @@
 
     #playBtn:hover {
       background-color: #a0133a;
+    }
+    
+    .youtube-container {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+    
+    #nowPlaying {
+      display: none;
+      font-size: 1.2em;
+      color: #c9184a;
+      margin-top: 15px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -148,21 +171,42 @@
       A cada momento ao seu lado, eu descubro mais motivos para te amar.<br />
       Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.<br /><br />
       Te amo com todo o meu coração. ❤️
+    </p>
       
+    <!-- Imagem principal -->
     <img src="ca356286-9ba3-45c0-b386-3c82946a5054.jpeg" alt="Nós dois" />
-<br>
-    <audio id="musica" loop>
-      <source src="musica.mp3" type="audio/mp3" />
-      Seu navegador não suporta áudio :(
-    </audio>
+    
+    <!-- YouTube embed (invisível) -->
+    <div class="youtube-container" id="youtubeContainer">
+      <iframe 
+        height="0" 
+        width="0" 
+        src="https://www.youtube.com/embed/HR4ZxjGQGYY?autoplay=0&start=0&end=60&controls=0&disablekb=1&fs=0&modestbranding=1" 
+        title="Jorge & Mateus - Duas Metades" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
     <button id="playBtn">🎵 Tocar música</button>
+    <div id="nowPlaying">♫ Tocando: Jorge & Mateus - Duas Metades ♫</div>
   </div>
 
   <script>
     const playBtn = document.getElementById('playBtn');
-    const musica = document.getElementById('musica');
+    const youtubeContainer = document.getElementById('youtubeContainer');
+    const nowPlaying = document.getElementById('nowPlaying');
+    
     playBtn.addEventListener('click', () => {
-      musica.play();
+      // Obter o iframe e definir autoplay para 1
+      const iframe = youtubeContainer.querySelector('iframe');
+      const src = iframe.src;
+      iframe.src = src.replace('autoplay=0', 'autoplay=1');
+      
+      // Mostrar mensagem de tocando agora
+      nowPlaying.style.display = 'block';
+      
+      // Esconder o botão
       playBtn.style.display = 'none';
     });
   </script>
