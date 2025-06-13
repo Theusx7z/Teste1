@@ -17,26 +17,71 @@
       position: relative;
       z-index: 2;
       padding: 50px 20px;
+      animation: fadeInScale 1.5s ease-out;
+    }
+
+    @keyframes fadeInScale {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .photo-container {
+      position: relative;
+      display: inline-block;
+      margin: 20px auto;
     }
 
     img {
-      max-width: 350px; /* Aumentei um pouco o tamanho da imagem */
+      max-width: 380px; /* Aumentei o tamanho da imagem */
       border-radius: 20px;
-      box-shadow: 0 0 15px #c9184a;
-      margin-top: 20px;
+      box-shadow: 0 0 20px #c9184a;
       animation: float 4s ease-in-out infinite;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Efeito de brilho ao redor da foto */
+    .sparkle {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      border-radius: 30px;
+      background: linear-gradient(45deg, 
+        rgba(255,255,255,0) 0%,
+        rgba(255,192,203,0.4) 25%, 
+        rgba(255,105,180,0.6) 50%, 
+        rgba(255,192,203,0.4) 75%, 
+        rgba(255,255,255,0) 100%);
+      background-size: 200% 200%;
+      animation: sparkleEffect 3s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes sparkleEffect {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 200%; }
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-12px) rotate(1deg); }
+      50% { transform: translateY(-8px) rotate(-1deg); }
+      75% { transform: translateY(-4px) rotate(0.5deg); }
     }
 
     h1 {
       color: #c9184a;
-      font-size: 3.2em; /* Aumentei o tamanho da fonte do título */
-      animation: pulse 2s infinite;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+      font-size: 4em; /* Aumentei ainda mais o tamanho do título */
+      animation: pulse 2s infinite, titleEnter 2s ease-out;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    @keyframes titleEnter {
+      0% { opacity: 0; transform: translateY(-50px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes pulse {
@@ -45,16 +90,18 @@
     }
 
     p {
-      font-size: 1.8em; /* Aumentei o tamanho da fonte do texto */
-      max-width: 800px; /* Aumentei a largura máxima para acomodar o texto maior */
+      font-size: 2.2em; /* Aumentei ainda mais o tamanho do texto */
+      max-width: 900px; /* Aumentei a largura máxima para acomodar o texto maior */
       margin: 30px auto;
       line-height: 1.8;
       animation: fadeInText 3s ease-in-out;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     @keyframes fadeInText {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(30px); }
+      30% { opacity: 0; }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .hearts {
@@ -70,32 +117,58 @@
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
       background: red;
       transform: rotate(45deg);
-      animation: floatUp 10s linear infinite;
+      animation: floatUp 15s linear infinite;
     }
 
     .heart::before,
     .heart::after {
       content: "";
       position: absolute;
-      width: 20px;
-      height: 20px;
       background: red;
       border-radius: 50%;
     }
 
     .heart::before {
-      top: -10px;
+      top: -50%;
       left: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .heart::after {
       top: 0;
-      left: -10px;
+      left: -50%;
+      width: 100%;
+      height: 100%;
     }
+
+    /* Corações de tamanhos diferentes */
+    .heart-small {
+      width: 15px;
+      height: 15px;
+    }
+
+    .heart-medium {
+      width: 25px;
+      height: 25px;
+    }
+
+    .heart-large {
+      width: 35px;
+      height: 35px;
+    }
+
+    /* Cores diferentes para os corações */
+    .heart-red { background: #ff0000; }
+    .heart-red::before, .heart-red::after { background: #ff0000; }
+    
+    .heart-pink { background: #ff69b4; }
+    .heart-pink::before, .heart-pink::after { background: #ff69b4; }
+    
+    .heart-purple { background: #da70d6; }
+    .heart-purple::before, .heart-purple::after { background: #da70d6; }
 
     @keyframes floatUp {
       0% {
@@ -108,59 +181,88 @@
       }
     }
 
-    #playBtn {
-      font-size: 18px; /* Aumentei o tamanho da fonte do botão */
-      padding: 12px 24px; /* Aumentei o padding do botão */
-      margin: 20px auto 0;
-      cursor: pointer;
-      background-color: #c9184a;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-      display: block;
+    /* Corações em primeiro plano que flutuam na tela */
+    .foreground-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
     }
 
-    #playBtn:hover {
-      background-color: #a0133a;
-    }
-    
-    .youtube-container {
+    .foreground-heart {
       position: absolute;
-      left: -9999px;
-      top: -9999px;
-      height: 0;
-      width: 0;
-      visibility: hidden;
+      opacity: 0;
+      animation: floatAcross 10s linear infinite;
     }
-    
-    #nowPlaying {
-      display: none;
-      font-size: 1.2em;
+
+    @keyframes floatAcross {
+      0% {
+        transform: translate(-100px, 100vh) rotate(45deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(calc(100vw + 100px), 0) rotate(360deg) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Efeito de pulsação para o texto "Te amo" */
+    .highlight {
       color: #c9184a;
-      margin-top: 15px;
-      animation: fadeIn 1s ease-in-out;
+      display: inline-block;
+      animation: heartbeat 1.5s infinite;
     }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      10% { transform: scale(1.1); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      40% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
   <div class="hearts">
-    <!-- 10 corações flutuantes -->
-    <div class="heart" style="left: 0%; animation-delay: 0s;"></div>
-    <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
-    <div class="heart" style="left: 20%; animation-delay: 2s;"></div>
-    <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
-    <div class="heart" style="left: 40%; animation-delay: 4s;"></div>
-    <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
-    <div class="heart" style="left: 60%; animation-delay: 6s;"></div>
-    <div class="heart" style="left: 70%; animation-delay: 7s;"></div>
-    <div class="heart" style="left: 80%; animation-delay: 8s;"></div>
-    <div class="heart" style="left: 90%; animation-delay: 9s;"></div>
+    <!-- 20 corações flutuantes em diferentes tamanhos, cores e velocidades -->
+    <div class="heart heart-small heart-red" style="left: 5%; animation-delay: 0s; animation-duration: 12s;"></div>
+    <div class="heart heart-medium heart-pink" style="left: 10%; animation-delay: 1s; animation-duration: 15s;"></div>
+    <div class="heart heart-large heart-purple" style="left: 15%; animation-delay: 2s; animation-duration: 18s;"></div>
+    <div class="heart heart-small heart-pink" style="left: 20%; animation-delay: 3s; animation-duration: 10s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 25%; animation-delay: 4s; animation-duration: 14s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 30%; animation-delay: 5s; animation-duration: 16s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 35%; animation-delay: 6s; animation-duration: 13s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 40%; animation-delay: 7s; animation-duration: 17s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 45%; animation-delay: 8s; animation-duration: 11s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 50%; animation-delay: 9s; animation-duration: 19s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 55%; animation-delay: 10s; animation-duration: 12s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 60%; animation-delay: 11s; animation-duration: 15s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 65%; animation-delay: 12s; animation-duration: 18s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 70%; animation-delay: 13s; animation-duration: 10s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 75%; animation-delay: 14s; animation-duration: 14s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 80%; animation-delay: 15s; animation-duration: 16s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 85%; animation-delay: 16s; animation-duration: 13s;"></div>
+    <div class="heart heart-large heart-pink" style="left: 90%; animation-delay: 17s; animation-duration: 17s;"></div>
+    <div class="heart heart-small heart-purple" style="left: 95%; animation-delay: 18s; animation-duration: 11s;"></div>
+    <div class="heart heart-medium heart-red" style="left: 97%; animation-delay: 19s; animation-duration: 19s;"></div>
+  </div>
+
+  <!-- Corações em primeiro plano -->
+  <div class="foreground-hearts">
+    <div class="heart heart-medium heart-red foreground-heart" style="top: 20%; animation-delay: 2s;"></div>
+    <div class="heart heart-large heart-pink foreground-heart" style="top: 40%; animation-delay: 5s;"></div>
+    <div class="heart heart-small heart-purple foreground-heart" style="top: 60%; animation-delay: 8s;"></div>
+    <div class="heart heart-medium heart-red foreground-heart" style="top: 80%; animation-delay: 11s;"></div>
+    <div class="heart heart-large heart-pink foreground-heart" style="top: 30%; animation-delay: 14s;"></div>
   </div>
 
   <div class="card">
@@ -170,44 +272,41 @@
       Seu sorriso ilumina meus dias, seu abraço me acalma, e seu amor me completa.<br />
       A cada momento ao seu lado, eu descubro mais motivos para te amar.<br />
       Neste Dia dos Namorados, quero apenas te lembrar o quanto você é especial pra mim.<br /><br />
-      Te amo com todo o meu coração. ❤️
+      <span class="highlight">Te amo com todo o meu coração. ❤️</span>
     </p>
       
-    <!-- Imagem principal -->
-    <img src="ca356286-9ba3-45c0-b386-3c82946a5054.jpeg" alt="Nós dois" />
-    
-    <!-- YouTube embed (invisível) -->
-    <div class="youtube-container" id="youtubeContainer">
-      <iframe 
-        height="0" 
-        width="0" 
-        src="https://www.youtube.com/embed/HR4ZxjGQGYY?autoplay=0&start=0&end=60&controls=0&disablekb=1&fs=0&modestbranding=1" 
-        title="Jorge & Mateus - Duas Metades" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
+    <!-- Imagem principal com efeito de brilho -->
+    <div class="photo-container">
+      <div class="sparkle"></div>
+      <img src="ca356286-9ba3-45c0-b386-3c82946a5054.jpeg" alt="Nós dois" />
     </div>
-
-    <button id="playBtn">🎵 Tocar música</button>
-    <div id="nowPlaying">♫ Tocando: Jorge & Mateus - Duas Metades ♫</div>
   </div>
-
+  
+  <!-- Áudio em segundo plano usando HTML5 Audio -->
+  <audio id="backgroundMusic" autoplay loop style="display:none">
+    <source src="musica.mp3" type="audio/mp3">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+  
   <script>
-    const playBtn = document.getElementById('playBtn');
-    const youtubeContainer = document.getElementById('youtubeContainer');
-    const nowPlaying = document.getElementById('nowPlaying');
-    
-    playBtn.addEventListener('click', () => {
-      // Obter o iframe e definir autoplay para 1
-      const iframe = youtubeContainer.querySelector('iframe');
-      const src = iframe.src;
-      iframe.src = src.replace('autoplay=0', 'autoplay=1');
+    // Tenta iniciar o áudio quando a página carrega
+    window.addEventListener('load', function() {
+      const audio = document.getElementById('backgroundMusic');
       
-      // Mostrar mensagem de tocando agora
-      nowPlaying.style.display = 'block';
+      // Tenta iniciar o áudio
+      const playPromise = audio.play();
       
-      // Esconder o botão
-      playBtn.style.display = 'none';
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          // Autoplay foi impedido
+          console.log("Autoplay foi bloqueado pelo navegador");
+          
+          // Adiciona um evento de clique para iniciar o áudio após interação do usuário
+          document.addEventListener('click', function() {
+            audio.play();
+          }, {once: true});
+        });
+      }
     });
   </script>
 </body>
